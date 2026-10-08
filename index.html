@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Inicio de Jornada - PWA Cobrador</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .mobile-frame { max-width: 420px; margin: 0 auto; background: #f8fafc; height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); overflow: hidden;}
+        .content-scroll { overflow-y: auto; flex-grow: 1; padding-bottom: 20px; }
+        .content-scroll::-webkit-scrollbar { display: none; }
+        
+        /* Animaciones para el check de sistema */
+        @keyframes pulse-blue {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        .btn-pulse { animation: pulse-blue 2s infinite; }
+        
+        /* Modal Overlay */
+        .modal-overlay { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); }
+    </style>
+</head>
+<body>
+
+<div class="mobile-frame">
+    
+    <!-- Top Bar (Minimalista para el inicio) -->
+    <header class="bg-white px-6 py-6 flex justify-between items-center z-20">
+        <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Financiera<span class="text-blue-600">SaaS</span></h1>
+        <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 border border-slate-200">
+            <i class="fa-solid fa-power-off"></i>
+        </div>
+    </header>
+
+    <div class="content-scroll px-6 pt-2 flex flex-col">
+
+        <!-- Saludo Inicial -->
+        <div class="mb-8">
+            <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-1">Buenos días,</p>
+            <h2 class="text-3xl font-extrabold text-slate-800">Carlos</h2>
+            <p class="text-slate-500 text-sm mt-1">Jueves, 24 de Septiembre de 2026</p>
+        </div>
+
+        <!-- Tarjeta de Asignación del Día -->
+        <div class="bg-slate-900 rounded-3xl p-6 mb-6 text-white shadow-xl shadow-slate-300 relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 opacity-10">
+                <i class="fa-solid fa-map text-9xl"></i>
+            </div>
+            
+            <div class="flex items-center gap-3 mb-4">
+                <div class="bg-blue-500/20 text-blue-400 p-2 rounded-lg">
+                    <i class="fa-solid fa-route"></i>
+                </div>
+                <div>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold">Ruta Asignada</p>
+                    <h3 class="text-lg font-bold text-white">Ruta Oriental</h3>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mt-6">
+                <div>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Clientes hoy</p>
+                    <p class="text-2xl font-extrabold">45</p>
+                </div>
+                <div>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold mb-1">Meta a recaudar</p>
+                    <p class="text-2xl font-extrabold text-blue-400">C$ 15,000</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chequeo de Sistema (Pre-vuelo) -->
+        <div class="mb-auto">
+            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4 ml-1">Verificación del Dispositivo</h3>
+            
+            <div class="bg-white rounded-2xl border border-slate-200 p-2 space-y-1">
+                <!-- Internet -->
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                            <i class="fa-solid fa-wifi"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700">Conexión WiFi</span>
+                    </div>
+                    <i class="fa-solid fa-check-circle text-green-500 text-lg"></i>
+                </div>
+                <!-- GPS -->
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                            <i class="fa-solid fa-location-crosshairs"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700">Sensor GPS Activo</span>
+                    </div>
+                    <i class="fa-solid fa-check-circle text-green-500 text-lg"></i>
+                </div>
+                <!-- Batería -->
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                            <i class="fa-solid fa-battery-three-quarters"></i>
+                        </div>
+                        <span class="text-sm font-bold text-slate-700">Batería (85%)</span>
+                    </div>
+                    <i class="fa-solid fa-check-circle text-green-500 text-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón de Acción Principal -->
+        <div class="mt-8 mb-4">
+            <p class="text-xs text-center text-slate-500 mb-3 font-semibold flex items-center justify-center gap-2">
+                <i class="fa-solid fa-circle-info"></i> Se requiere descargar el mapa offline
+            </p>
+            <button onclick="iniciarDescarga()" class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-extrabold text-lg py-5 rounded-2xl shadow-lg shadow-blue-200 transition-all transform active:scale-95 flex items-center justify-center gap-3 btn-pulse">
+                <i class="fa-solid fa-cloud-arrow-down text-xl"></i>
+                PREPARAR RUTA E INICIAR
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Modal de Descarga (Oculto por defecto) -->
+    <div id="downloadModal" class="absolute inset-0 modal-overlay z-50 flex flex-col items-center justify-center p-6 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-8 w-full max-w-sm text-center shadow-2xl transform scale-95 transition-transform duration-300" id="modalContent">
+            
+            <div class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-satellite-dish text-4xl text-blue-500 fa-beat-fade"></i>
+            </div>
+            
+            <h3 class="text-xl font-extrabold text-slate-800 mb-2">Sincronizando...</h3>
+            <p class="text-sm text-slate-500 font-semibold mb-6" id="syncStatusText">Descargando padrón de clientes</p>
+            
+            <!-- Barra de Progreso -->
+            <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden mb-2">
+                <div id="progressBar" class="bg-blue-600 h-3 rounded-full w-0 transition-all duration-300 ease-out"></div>
+            </div>
+            <p class="text-xs font-bold text-slate-400 text-right" id="progressText">0%</p>
+            
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function iniciarDescarga() {
+        const modal = document.getElementById('downloadModal');
+        const modalContent = document.getElementById('modalContent');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const statusText = document.getElementById('syncStatusText');
+        
+        // Mostrar modal
+        modal.classList.remove('hidden');
+        // Pequeño delay para la animación de entrada
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }, 10);
+
+        // Simular el proceso de descarga del Service Worker
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.floor(Math.random() * 15) + 5;
+            if (progress > 100) progress = 100;
+            
+            progressBar.style.width = progress + '%';
+            progressText.innerText = progress + '%';
+
+            if (progress > 30 && progress < 70) {
+                statusText.innerText = "Descargando mapas offline (Leaflet)...";
+            } else if (progress >= 70 && progress < 100) {
+                statusText.innerText = "Guardando en caché local...";
+            } else if (progress === 100) {
+                clearInterval(interval);
+                statusText.innerText = "¡Jornada lista!";
+                statusText.classList.replace('text-slate-500', 'text-green-600');
+                
+                // Cambiar icono a completado
+                document.querySelector('.fa-satellite-dish').parentElement.classList.replace('bg-blue-50', 'bg-green-50');
+                document.querySelector('.fa-satellite-dish').className = "fa-solid fa-check text-4xl text-green-500";
+                
+                // Simular transición al dashboard
+                setTimeout(() => {
+                    // alert("Aquí la app haría un 'window.location.href = /dashboard' para llevar al cobrador a la pantalla de resumen que vimos antes.");
+                    // Reset para demo
+                    modal.classList.add('opacity-0');
+                    setTimeout(() => modal.classList.add('hidden'), 300);
+                    window.location.href = 'mockup_pwa_cobrador.html'
+                }, 1500);
+            }
+        }, 400);
+    }
+</script>
+
+</body>
+</html>

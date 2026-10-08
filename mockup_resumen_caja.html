@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Resumen de Caja - PWA Cobrador</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .mobile-frame { max-width: 420px; margin: 0 auto; background: #f8fafc; height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); overflow: hidden;}
+        .content-scroll { overflow-y: auto; flex-grow: 1; padding-bottom: 90px; }
+        .content-scroll::-webkit-scrollbar { display: none; }
+        .content-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Línea punteada tipo recibo */
+        .receipt-divider { border-top: 2px dashed #cbd5e1; margin: 16px 0; }
+    </style>
+</head>
+<body>
+
+<div class="mobile-frame">
+    
+    <!-- Top Bar -->
+    <header class="bg-white px-5 py-5 flex justify-between items-center z-20 sticky top-0 shadow-sm border-b border-slate-100">
+        <h1 class="text-xl font-extrabold text-slate-800">Arqueo de Caja</h1>
+        <div class="bg-slate-100 text-slate-600 text-xs px-3 py-1.5 rounded-lg font-bold flex items-center gap-2">
+            24 Sept 2026
+        </div>
+    </header>
+
+    <div class="content-scroll px-5 pt-5">
+
+        <!-- Tarjeta Principal de Efectivo -->
+        <div class="bg-white rounded-3xl p-6 mb-6 shadow-md border border-slate-200">
+            <div class="text-center mb-4">
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Total a Entregar en Sucursal</p>
+                <h2 class="text-4xl font-extrabold text-green-600">C$ 4,500.00</h2>
+            </div>
+            
+            <div class="receipt-divider"></div>
+            
+            <!-- Desglose Contable -->
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-slate-500 font-semibold">Capital Recuperado</span>
+                    <span class="text-sm font-bold text-slate-800">C$ 3,200.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-slate-500 font-semibold">Interés Cobrado</span>
+                    <span class="text-sm font-bold text-slate-800">C$ 1,150.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-red-500 font-semibold">Mora Penal</span>
+                    <span class="text-sm font-bold text-red-600">C$ 150.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Métricas Operativas -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-blue-50 rounded-2xl p-4 border border-blue-100">
+                <i class="fa-solid fa-file-invoice text-blue-500 text-xl mb-2"></i>
+                <p class="text-[10px] text-blue-600 font-bold uppercase">Recibos Emitidos</p>
+                <p class="text-2xl font-extrabold text-slate-800">12</p>
+            </div>
+            <div class="bg-orange-50 rounded-2xl p-4 border border-orange-100">
+                <i class="fa-solid fa-person-walking-arrow-loop-left text-orange-500 text-xl mb-2"></i>
+                <p class="text-[10px] text-orange-600 font-bold uppercase">No Encontrados</p>
+                <p class="text-2xl font-extrabold text-slate-800">3</p>
+            </div>
+        </div>
+
+        <!-- Últimos Movimientos -->
+        <div>
+            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 ml-1">Últimos cobros sincronizados</h3>
+            
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+                <!-- Transacción 1 -->
+                <div class="p-4 border-b border-slate-100 flex justify-between items-center">
+                    <div>
+                        <p class="font-bold text-slate-700 text-sm">Comedor Doña María</p>
+                        <p class="text-[10px] text-slate-400">10:45 AM • GPS OK</p>
+                    </div>
+                    <span class="font-bold text-green-600">+C$ 550.00</span>
+                </div>
+                <!-- Transacción 2 -->
+                <div class="p-4 border-b border-slate-100 flex justify-between items-center">
+                    <div>
+                        <p class="font-bold text-slate-700 text-sm">Ferretería Lugo</p>
+                        <p class="text-[10px] text-slate-400">09:30 AM • GPS OK</p>
+                    </div>
+                    <span class="font-bold text-green-600">+C$ 1,200.00</span>
+                </div>
+                <!-- Transacción 3 (Alerta) -->
+                <div class="p-4 flex justify-between items-center bg-red-50/50">
+                    <div>
+                        <p class="font-bold text-slate-700 text-sm">Pulpería La Bendición</p>
+                        <p class="text-[10px] text-red-500 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Fuera de Zona</p>
+                    </div>
+                    <span class="font-bold text-green-600">+C$ 350.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón de Sincronización Final -->
+        <button class="w-full mt-6 bg-slate-800 hover:bg-slate-900 text-white font-bold py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            SINCRONIZAR Y CERRAR DÍA
+        </button>
+
+    </div>
+
+    <!-- Barra de Navegación Inferior (Ahora con "Resumen" activo) -->
+    <nav class="absolute bottom-0 w-full bg-white border-t border-slate-200 flex justify-around p-3 pb-6 z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <button class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-house text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Inicio</span>
+        </button>
+        <button class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Mapa</span>
+        </button>
+        <button class="flex flex-col items-center text-blue-600">
+            <i class="fa-solid fa-list-check text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Resumen</span>
+        </button>
+    </nav>
+
+</div>
+
+</body>
+</html>

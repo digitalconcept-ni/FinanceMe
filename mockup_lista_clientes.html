@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Directorio de Clientes - PWA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .mobile-frame { max-width: 420px; margin: 0 auto; background: #f8fafc; height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); overflow: hidden;}
+        .content-scroll { overflow-y: auto; flex-grow: 1; padding-bottom: 90px; }
+        .content-scroll::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="mobile-frame">
+    
+    <!-- Top Bar con Buscador -->
+    <header class="bg-white px-5 pt-6 pb-3 z-20 sticky top-0 shadow-sm border-b border-slate-100">
+        <h1 class="text-xl font-extrabold text-slate-800 mb-3">Directorio de Ruta</h1>
+        <div class="relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
+            <input type="text" placeholder="Buscar por nombre o cédula..." class="w-full bg-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm font-semibold text-slate-700 outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+        </div>
+        
+        <!-- Filtros Rápidos (Chips) -->
+        <div class="flex gap-2 mt-4 overflow-x-auto pb-1" style="scrollbar-width: none;">
+            <button class="whitespace-nowrap px-4 py-1.5 bg-slate-800 text-white text-xs font-bold rounded-full">Todos (45)</button>
+            <button class="whitespace-nowrap px-4 py-1.5 bg-orange-100 text-orange-700 text-xs font-bold rounded-full">Pendientes (12)</button>
+            <button class="whitespace-nowrap px-4 py-1.5 bg-red-100 text-red-700 text-xs font-bold rounded-full">En Mora (5)</button>
+            <button class="whitespace-nowrap px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold rounded-full">Cobrados (28)</button>
+        </div>
+    </header>
+
+    <div class="content-scroll px-5 pt-4 space-y-3">
+
+        <!-- Tarjeta Cliente: Pendiente con Mora -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="flex justify-between items-start mb-2">
+                <div>
+                    <h3 class="font-bold text-slate-800">Comedor Doña María</h3>
+                    <p class="text-xs text-slate-500">Préstamo #A-4092</p>
+                </div>
+                <span class="bg-red-100 text-red-700 text-[10px] font-bold px-2 py-1 rounded">ATRASADO</span>
+            </div>
+            <div class="flex justify-between items-end mt-3">
+                <div>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold">Deuda total de hoy</p>
+                    <p class="text-lg font-extrabold text-slate-800">C$ 550.00</p>
+                </div>
+                <div class="flex gap-2">
+                    <button class="w-10 h-10 rounded-full bg-slate-100 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-phone"></i></button>
+                    <button class="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta Cliente: Pendiente Al Día -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+            <div class="flex justify-between items-start mb-2">
+                <div>
+                    <h3 class="font-bold text-slate-800">Taller El Chele</h3>
+                    <p class="text-xs text-slate-500">Préstamo #A-4105</p>
+                </div>
+                <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded">PENDIENTE</span>
+            </div>
+            <div class="flex justify-between items-end mt-3">
+                <div>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold">Deuda total de hoy</p>
+                    <p class="text-lg font-extrabold text-slate-800">C$ 800.00</p>
+                </div>
+                <div class="flex gap-2">
+                    <button class="w-10 h-10 rounded-full bg-slate-100 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-phone"></i></button>
+                    <button class="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta Cliente: Ya Cobrado -->
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 opacity-75">
+            <div class="flex justify-between items-start mb-2">
+                <div>
+                    <h3 class="font-bold text-slate-500 line-through">Ferretería Lugo</h3>
+                    <p class="text-xs text-slate-400">Préstamo #B-1022</p>
+                </div>
+                <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1"><i class="fa-solid fa-check"></i> COBRADO</span>
+            </div>
+            <div class="mt-2">
+                <p class="text-xs font-bold text-green-600">Recibido: C$ 1,200.00 (09:30 AM)</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Barra de Navegación Inferior -->
+    <nav class="absolute bottom-0 w-full bg-white border-t border-slate-200 flex justify-around p-3 pb-6 z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <button class="flex flex-col items-center text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Ruta</span>
+        </button>
+        <button class="flex flex-col items-center text-blue-600">
+            <i class="fa-solid fa-list text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Clientes</span>
+        </button>
+        <button class="flex flex-col items-center text-slate-400 hover:text-slate-600 relative" 
+        onclick="window.location.href='mockup_pantalla_sync.html'">
+            <i class="fa-solid fa-rotate text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Sync</span>
+            <span class="absolute top-0 right-1 bg-red-500 w-2.5 h-2.5 rounded-full border-2 border-white"></span>
+        </button>
+    </nav>
+
+</div>
+
+</body>
+</html>

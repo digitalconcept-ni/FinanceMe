@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mockup PWA Cobrador</title>
+    <!-- Usamos Tailwind CSS via CDN para un prototipado rápido y limpio -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Tipografía de alta legibilidad para lectura bajo el sol */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #e5e7eb; }
+        .mobile-frame { max-width: 420px; margin: 0 auto; background: white; height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        .map-placeholder { background: url('https://www.transparenttextures.com/patterns/cubes.png'), #d1d5db; display: flex; align-items: center; justify-content: center; position: relative; }
+        /* Efecto Bottom Sheet tipo Uber */
+        .bottom-sheet { background: white; border-top-left-radius: 24px; border-top-right-radius: 24px; box-shadow: 0 -4px 20px rgba(0,0,0,0.1); z-index: 10; margin-top: -20px; flex-grow: 1; display: flex; flex-direction: column;}
+        /* Input para dedos grandes (fat-finger design) */
+        input[type="number"] { font-size: 2.5rem; font-weight: 800; text-align: center; height: 80px; letter-spacing: -1px;}
+        input[type="number"]::placeholder { color: #cbd5e1; font-weight: 600; }
+        /* Ocultar flechas del input number */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    </style>
+</head>
+<body>
+
+<div class="mobile-frame">
+    
+    <!-- Top Bar (Minimalista) -->
+    <header class="bg-slate-900 text-white p-4 flex justify-between items-center z-20">
+        <div>
+            <h1 class="text-lg font-bold">Ruta Oriental</h1>
+            <p class="text-xs text-slate-400">12 Clientes pendientes</p>
+        </div>
+        <!-- Indicador Offline Claro -->
+        <div class="bg-red-500 text-white text-xs px-3 py-1 rounded-full font-semibold flex items-center gap-2">
+            <i class="fa-solid fa-wifi" style="text-decoration: line-through;"></i> OFFLINE
+        </div>
+    </header>
+
+    <!-- Área del Mapa (Mitad superior de la pantalla) -->
+    <div class="map-placeholder flex-1" style="min-height: 250px;">
+        <div class="absolute inset-0 opacity-20 bg-cover" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a9/Managua_map.png'); background-position: center;"></div>
+        <div class="z-10 flex flex-col items-center">
+            <i class="fa-solid fa-location-dot text-4xl text-blue-600 drop-shadow-md"></i>
+            <span class="bg-white text-blue-800 text-xs font-bold px-2 py-1 rounded mt-2 shadow">Tú estás aquí</span>
+        </div>
+        <!-- Marcador de cliente -->
+        <div class="absolute top-1/4 right-1/4 flex flex-col items-center">
+            <i class="fa-solid fa-shop text-2xl text-orange-500 drop-shadow-md"></i>
+            <span class="bg-white text-xs font-bold px-1 rounded shadow">#15</span>
+        </div>
+    </div>
+
+    <!-- Bottom Sheet (Área de Acción Interactiva) -->
+    <div class="bottom-sheet p-6 pb-20">
+        <!-- Indicador de arrastre -->
+        <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4"></div>
+        
+        <!-- Info del Cliente -->
+        <div class="flex justify-between items-start mb-4">
+            <div>
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Próxima Visita</p>
+                <h2 class="text-2xl font-extrabold text-slate-800 leading-tight">Comedor Doña María</h2>
+                <p class="text-sm text-slate-500"><i class="fa-solid fa-barcode mr-1"></i> Préstamo #A-4092</p>
+            </div>
+            <button class="bg-slate-100 p-3 rounded-full text-blue-600">
+                <i class="fa-solid fa-phone"></i>
+            </button>
+        </div>
+
+        <!-- Tarjeta de Deuda -->
+        <div class="bg-orange-50 border border-orange-100 rounded-xl p-4 mb-6 flex justify-between items-center">
+            <div>
+                <p class="text-xs text-orange-600 font-bold uppercase">Cuota del Día</p>
+                <p class="text-xl font-extrabold text-orange-700">C$ 500.00</p>
+            </div>
+            <div class="text-right">
+                <p class="text-xs text-slate-500 uppercase">Atraso</p>
+                <p class="text-sm font-bold text-red-600">C$ 50.00</p>
+            </div>
+        </div>
+
+        <!-- Input Gigante para Cobro (Mobile-First) -->
+        <div class="mb-4">
+            <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 text-center">Monto Recibido Físicamente</label>
+            <div class="relative">
+                <span class="absolute left-4 top-6 text-3xl font-bold text-slate-400">C$</span>
+                <input type="number" pattern="[0-9]*" inputmode="decimal" placeholder="0.00" class="w-full bg-slate-100 rounded-2xl border-2 border-slate-200 text-slate-800 focus:border-blue-500 focus:bg-white outline-none transition-colors px-12">
+            </div>
+        </div>
+
+        <!-- Botón de Acción Principal (Thumb-friendly) -->
+        <button class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-extrabold text-xl py-5 rounded-2xl shadow-lg shadow-blue-200 transition-all transform active:scale-95 flex items-center justify-center gap-3 mt-auto">
+            <i class="fa-solid fa-check-circle text-2xl"></i>
+            REGISTRAR ABONO
+        </button>
+    </div>
+
+    <!-- Barra de Navegación Inferior -->
+    <nav class="absolute bottom-0 w-full bg-white border-t border-gray-200 flex justify-around p-3 pb-6 z-20">
+        <button class="flex flex-col items-center text-blue-600" 
+         onclick="window.location.href='mockup_lista_clientes.html'">
+            <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Ruta</span>
+        </button>
+        <button class="flex flex-col items-center text-slate-400 hover:text-slate-600" 
+        onclick="window.location.href='mockup_lista_clientes.html'">
+            <i class="fa-solid fa-list text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Clientes</span>
+        </button>
+        <button class="flex flex-col items-center text-slate-400 hover:text-slate-600 relative"
+         onclick="window.location.href='mockup_pantalla_sync.html'">
+            <i class="fa-solid fa-rotate text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Sync</span>
+            <span class="absolute top-0 right-1 bg-red-500 w-2.5 h-2.5 rounded-full border-2 border-white"></span>
+        </button>
+    </nav>
+
+</div>
+
+</body>
+</html>
